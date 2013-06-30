@@ -13,9 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-public class AuthServlet extends HttpServlet {
+public class Auth extends HttpServlet {
 
-   private static final String CALLBACK = "/AuthServletCallback";
+   private static final String CALLBACK = "/AuthCallback";
 
    public void doGet(HttpServletRequest request, HttpServletResponse response) {
         Twitter twitter = new TwitterFactory().getInstance();

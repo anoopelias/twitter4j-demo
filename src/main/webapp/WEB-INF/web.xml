@@ -3,21 +3,21 @@
   <display-name>twitter4j-demo</display-name>
   
   <servlet>
-  	<servlet-name>AuthServlet</servlet-name>
-  	<servlet-class>twitter4j.demo.AuthServlet</servlet-class>
+  	<servlet-name>Auth</servlet-name>
+  	<servlet-class>twitter4j.demo.Auth</servlet-class>
   </servlet>
   <servlet>
-  	<servlet-name>AuthServletCallback</servlet-name>
-  	<servlet-class>twitter4j.demo.AuthServletCallback</servlet-class>
+  	<servlet-name>AuthCallback</servlet-name>
+  	<servlet-class>twitter4j.demo.AuthCallback</servlet-class>
   </servlet>
   
   <servlet-mapping>
-	<servlet-name>AuthServlet</servlet-name>
-	<url-pattern>/AuthServlet</url-pattern>
+	<servlet-name>Auth</servlet-name>
+	<url-pattern>/Auth</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-	<servlet-name>AuthServletCallback</servlet-name>
-	<url-pattern>/AuthServletCallback</url-pattern>
+	<servlet-name>AuthCallback</servlet-name>
+	<url-pattern>/AuthCallback</url-pattern>
   </servlet-mapping>
 
   <welcome-file-list>

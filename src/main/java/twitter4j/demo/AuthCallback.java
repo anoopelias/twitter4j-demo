@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-public class AuthServletCallback extends HttpServlet {
+public class AuthCallback extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) {
         Twitter twitter = (Twitter) request.getSession().getAttribute("twitter");
