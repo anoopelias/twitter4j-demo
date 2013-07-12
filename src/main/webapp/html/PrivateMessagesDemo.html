@@ -6,8 +6,25 @@
         <script>
             $(function () {
                 $.get('../PrivateMessages', function(data) {
-                    console.log($.parseJSON(data));
+                    var resp = $.parseJSON(data);
+                    $("#content").html(function() {
+                        var content = "";
+                        if (resp.status && resp.status === "success") {
+                            $.each(resp.response, function() {
+                               content += "<tr>"; 
+                               content += "<td>" + this.sender + "</td>";
+                               content += "<td>" + this.recipient + "</td>";
+                               content += "<td>" + this.text + "</td>";
+                               content += "</tr>"; 
 
+                            });
+                        }
+                        else {
+                            content += "<tr><td>" + resp.response + "</td></tr>";
+                        }
+
+                        return "<table><tbody>" + content + "</tbody></table>";
+                    });
                 });
             });
         </script>
@@ -16,5 +33,9 @@
     <body>
 	    <div id="content">
 	    </div>
+	    <br>
+        <span>
+	        <a href="../index.html">Home</a>
+	    </span>
 	</body>
 </html>
