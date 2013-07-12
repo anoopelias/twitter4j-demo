@@ -24,8 +24,8 @@ public class PrivateMessages extends HttpServlet {
             if(twitter != null) {
                 responseString.append("[");
                 for (DirectMessage dm : twitter.getDirectMessages()) {
-                    responseString.append("{\"sender\" : \"").append(dm.getSenderId()).append("\", ");
-                    responseString.append("\"recipient\" : \"").append(dm.getRecipientId()).append("\", ");
+                    responseString.append("{\"sender\" : \"").append(dm.getSenderScreenName()).append("\", ");
+                    responseString.append("\"recipient\" : \"").append(dm.getRecipientScreenName()).append("\", ");
                     responseString.append("\"text\" : \"").append(Util.textToJson(dm.getText())).append("\"},");
                 }
                 responseString.deleteCharAt(responseString.length() - 1);
