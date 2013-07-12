@@ -18,7 +18,7 @@ public class AuthCallback extends HttpServlet {
         RequestToken requestToken = (RequestToken) request.getSession().getAttribute("requestToken");
         String verifier = request.getParameter("oauth_verifier");
         try {
-            twitter.getOAuthAccessToken(requestToken, verifier);
+            System.out.println(twitter.getOAuthAccessToken(requestToken, verifier));
             request.getSession().removeAttribute("requestToken");
             response.sendRedirect(request.getContextPath() + "/html/AuthDemo.html");
         } catch (TwitterException e) {

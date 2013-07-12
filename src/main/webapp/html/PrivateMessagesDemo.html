@@ -1,0 +1,19 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <script src="../js/jquery-1.10.2.min.js">
+        </script>
+        <script>
+            $(function () {
+                $.get('../PrivateMessages', function(data) {
+                    console.log($.parseJSON(data));
+                });
+            });
+        </script>
+        <title>Private Messages Demo</title>
+    </head>   
+    <body>
+	    <div id="content">
+	    </div>
+	</body>
+</html>
