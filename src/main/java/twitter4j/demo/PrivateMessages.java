@@ -17,28 +17,37 @@ import java.util.List;
 public class PrivateMessages extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) {
-        System.out.println("Some text3");
                 
+        StringBuffer responseString = new StringBuffer();
         try {
             Twitter twitter = (Twitter) request.getSession().getAttribute("twitter");
-            StringBuffer responseString = new StringBuffer("[");
-            for (DirectMessage dm : twitter.getDirectMessages()) {
-                responseString.append("{\"sender\" : \"").append(dm.getSenderId()).append("\", ");
-                responseString.append("\"recipient\" : \"").append(dm.getRecipientId()).append("\", ");
-                String text = dm.getText(); 
-                System.out.println("Before >" + text);
-                if(text.contains("\n")) {
-                    System.out.println("After >" + Util.textToJson(text));
+            if(twitter != null) {
+                responseString.append("[");
+                for (DirectMessage dm : twitter.getDirectMessages()) {
+                    responseString.append("{\"sender\" : \"").append(dm.getSenderId()).append("\", ");
+                    responseString.append("\"recipient\" : \"").append(dm.getRecipientId()).append("\", ");
+                    String text = dm.getText(); 
+                    System.out.println("Before >" + text);
+                    if(text.contains("\n")) {
+                        System.out.println("After >" + Util.textToJson(text));
+                    }
+                    responseString.append("\"text\" : \"").append(Util.textToJson(dm.getText())).append("\"},");
                 }
-                responseString.append("\"text\" : \"").append(Util.textToJson(dm.getText())).append("\"},");
-            }
-            responseString.deleteCharAt(responseString.length() - 1);
-            responseString.append("]");
+                responseString.deleteCharAt(responseString.length() - 1);
+                responseString.append("]");
 
-            System.out.println(responseString);
+                responseString.insert(0, "{ \"status\" : \"success\", " +
+                    "\"response\" : ");
+                responseString.append("}");
+
+            }
+            else {
+                responseString.append("{ \"status\" : \"failure\", " +
+                    "\"response\" : ");
+                responseString.append("\"Probably you should login first\"}");
+            }
 
             response.getOutputStream().write(responseString.toString().getBytes());
-
         } catch (IOException e) {
            e.printStackTrace();
         } catch (TwitterException e) {
